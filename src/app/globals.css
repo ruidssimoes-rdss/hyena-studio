@@ -1,26 +1,188 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ------------------------------------------------------------------ */
+/* Cal Sans — wordmark only (header "hyena studio")                   */
+/* ------------------------------------------------------------------ */
+
+@font-face {
+  font-family: "Cal Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/CalSans-SemiBold.woff2") format("woff2");
 }
+
+/* ------------------------------------------------------------------ */
+/* Tailwind theme — Geist fonts injected by next/font CSS variables   */
+/* ------------------------------------------------------------------ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ------------------------------------------------------------------ */
+/* Editor chrome — DESIGN-SPEC.md exact values                        */
+/* Fixed; never changes with user tokens                              */
+/* ------------------------------------------------------------------ */
+
+.hyena-chrome {
+  /* ── Layout ── */
+  --chrome-header-height: 56px;
+  --chrome-sidebar-width: 224px;
+  --chrome-cap-width: 252px;
+
+  /* ── Surfaces ── */
+  --chrome-surface: #ffffff;
+  --chrome-sidebar: #fafafa;
+  --chrome-surface-active: #f0f0f0;
+  --chrome-surface-hover: rgba(0, 0, 0, 0.04);
+  --chrome-surface-outer: rgba(240, 240, 240, 0.5);
+
+  /* ── Text — DESIGN-SPEC exact values ── */
+  --chrome-text: #262626;
+  --chrome-text-outline: #171717;
+  --chrome-text-secondary: #727272;
+  --chrome-text-ghost: #838383;
+  --chrome-text-muted: #a1a1a1;
+  --chrome-text-inactive: #a8abb2;
+  --chrome-text-pill: #36393d;
+  --chrome-text-shortcut: #686868;
+  --chrome-text-token: #737373;
+
+  /* ── Borders ── */
+  --chrome-border: #f0f0f0;
+  --chrome-border-header: rgba(0, 0, 0, 0.05);
+  --chrome-border-inner: rgba(0, 0, 0, 0.06);
+  --chrome-border-cmdk: rgba(0, 0, 0, 0.1);
+  --chrome-border-separator: rgba(0, 0, 0, 0.08);
+  --chrome-border-swatch: #e1e1e1;
+
+  /* ── Accent / Brand ── */
+  --chrome-accent: #262626;
+  --chrome-accent-fg: #fafafa;
+
+  /* ── Semantic ── */
+  --chrome-destructive: #d5143e;
+  --chrome-destructive-border: #bf2144;
+  --chrome-destructive-soft: rgba(213, 20, 62, 0.05);
+  --chrome-info-bg: rgba(43, 127, 255, 0.08);
+  --chrome-info-text: #1447e6;
+
+  /* ── Radii — DESIGN-SPEC Section 6 ── */
+  --chrome-radius-pill: 8.75px;
+  --chrome-radius-tab: 10px;
+  --chrome-radius-outer: 12px;
+  --chrome-radius-middle: 14px;
+  --chrome-radius-inner: 10px;
+  --chrome-radius-cmdk-key: 3.5px;
+  --chrome-radius-badge: 4.75px;
+  --chrome-radius-swatch: 2.5px;
+
+  /* ── Scrollbar ── */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.08) transparent;
+}
+
+/* ------------------------------------------------------------------ */
+/* Cal Sans utility class — used only in Header wordmark              */
+/* ------------------------------------------------------------------ */
+
+.font-cal {
+  font-family: "Cal Sans", system-ui, sans-serif;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base styles                                                        */
+/* ------------------------------------------------------------------ */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans);
+  background: #fafafa;
+  color: #262626;
+}
+
+/* ------------------------------------------------------------------ */
+/* Keyframes                                                          */
+/* ------------------------------------------------------------------ */
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes scrim-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes section-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Interactions section — wrapped in reduced-motion guard */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    15% { transform: translateX(-4px); }
+    30% { transform: translateX(4px); }
+    45% { transform: translateX(-3px); }
+    60% { transform: translateX(3px); }
+    75% { transform: translateX(-1px); }
+    90% { transform: translateX(1px); }
+    100% { transform: translateX(0); }
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% { box-shadow: 0 0 0 0px rgba(38, 38, 38, 0); }
+    50% { box-shadow: 0 0 0 8px rgba(38, 38, 38, 0.12); }
+  }
+}
+
+/* Reduced motion fallback: no shake/pulse animation */
+@media (prefers-reduced-motion: reduce) {
+  .interaction-animated {
+    animation: none !important;
+    transition: none !important;
+  }
 }
