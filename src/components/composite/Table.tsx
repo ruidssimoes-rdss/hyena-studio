@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react"
 import { ArrowDown, ArrowUp, Check } from "lucide-react"
 import { cn } from "@/lib/cn"
-import { useTokens } from "@/tokens/provider"
+import { useTokenStore } from "@/store/token-store"
 
 export interface TableColumn {
   key: string
@@ -70,7 +70,7 @@ export function Table({
   onSort,
   emptyMessage = "No data",
 }: TableProps) {
-  const { density } = useTokens()
+  const density = useTokenStore((s) => s.density)
   const densityVars = getDensityVars(density)
   const [sortKey, setSortKey] = useState<string | null>(null)
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc")

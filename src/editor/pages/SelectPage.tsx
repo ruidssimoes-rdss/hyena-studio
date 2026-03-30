@@ -68,8 +68,8 @@ function StatesSection() {
   const options = ["Option 1", "Option 2", "Option 3"]
 
   return (
-    <PreviewSection label="States" height={320}>
-      <div className="flex items-start justify-center" style={{ gap: "24px", paddingTop: "20px" }}>
+    <PreviewSection label="States" wrapClassName="flex flex-col items-center gap-[10px] w-full">
+      <div className="flex flex-col items-center" style={{ gap: "20px", paddingTop: "20px" }}>
         {/* Default */}
         <div className="flex flex-col items-center">
           <div style={triggerStyle}>

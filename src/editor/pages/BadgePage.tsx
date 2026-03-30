@@ -11,89 +11,70 @@ import {
 } from "@/editor/components/PageShell"
 
 // ================================================================== //
+// DESIGN TOKENS                                                        //
+// ================================================================== //
+
+const BADGE_BASE: React.CSSProperties = {
+  height: "19.6px",
+  padding: "1px 5px",
+  borderRadius: "8px",
+  fontSize: "12px",
+  fontWeight: 500,
+  lineHeight: "16px",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+}
+
+// ================================================================== //
 // PREVIEW                                                              //
 // ================================================================== //
 
-interface BadgeStyle {
+interface BadgeVariant {
+  label: string
   bg: string
+  border: string
   color: string
-  border?: string
 }
 
-const BADGE_VARIANTS: Array<{ label: string; style: BadgeStyle }> = [
-  { label: "Default", style: { bg: "#262626", color: "#fafafa" } },
-  { label: "Secondary", style: { bg: "#f0f0f0", color: "#262626" } },
-  { label: "Outline", style: { bg: "transparent", color: "#262626", border: "0.8px solid #f0f0f0" } },
-  { label: "Destructive", style: { bg: "rgba(213,20,62,0.08)", color: "#d5143e" } },
-  { label: "Success", style: { bg: "rgba(0,187,127,0.08)", color: "#00885e" } },
-  { label: "Warning", style: { bg: "rgba(245,158,11,0.08)", color: "#b45309" } },
-  { label: "Info", style: { bg: "rgba(59,130,246,0.08)", color: "#2563eb" } },
-]
-
-function PreviewBadge({
-  label,
-  style,
-  height = 22,
-  fontSize = "12px",
-}: {
-  label: string
-  style: BadgeStyle
-  height?: number
-  fontSize?: string
-}) {
+function PreviewBadge({ v }: { v: BadgeVariant }) {
   return (
-    <span
-      className="inline-flex items-center justify-center font-medium"
-      style={{
-        height: `${height}px`,
-        padding: "0 6px",
-        borderRadius: "10px",
-        background: style.bg,
-        color: style.color,
-        border: style.border || "none",
-        fontSize,
-        lineHeight: "1",
-      }}
-    >
-      {label}
+    <span style={{ ...BADGE_BASE, background: v.bg, border: `0.8px solid ${v.border}`, color: v.color }}>
+      {v.label}
     </span>
   )
 }
 
+const BASE_VARIANTS: BadgeVariant[] = [
+  { label: "Default", bg: "#262626", border: "#262626", color: "#FFFFFF" },
+  { label: "Secondary", bg: "#F0F0F0", border: "#F0F0F0", color: "#838383" },
+  { label: "Outline", bg: "transparent", border: "#F0F0F0", color: "#262626" },
+]
+
+const STATUS_VARIANTS: BadgeVariant[] = [
+  { label: "Information", bg: "rgba(179,146,240,0.05)", border: "#B392F0", color: "#B392F0" },
+  { label: "Success", bg: "rgba(20,184,166,0.05)", border: "#14B8A6", color: "#14B8A6" },
+  { label: "Warning", bg: "rgba(249,115,22,0.05)", border: "#F97316", color: "#F97316" },
+  { label: "Error", bg: "rgba(213,20,62,0.05)", border: "#D5143E", color: "#D5143E" },
+  { label: "Progress", bg: "rgba(59,130,246,0.05)", border: "#3B82F6", color: "#3B82F6" },
+]
+
 function VariantsSection() {
   return (
-    <PreviewSection label="Variants">
-      {BADGE_VARIANTS.map((v) => (
-        <PreviewBadge key={v.label} label={v.label} style={v.style} />
+    <PreviewSection label="Variants" wrapClassName="flex flex-col items-center gap-[8px] w-full">
+      {BASE_VARIANTS.map((v) => (
+        <PreviewBadge key={v.label} v={v} />
       ))}
     </PreviewSection>
   )
 }
 
-function SizesSection() {
-  const defaultStyle = BADGE_VARIANTS[0].style
+function StatusVariantsSection() {
   return (
-    <PreviewSection label="Sizes">
-      <div className="flex items-center justify-center" style={{ gap: "16px" }}>
-        <div className="flex flex-col items-center">
-          <PreviewBadge label="Large" style={defaultStyle} height={26} fontSize="14px" />
-          <span style={{ fontSize: "10px", fontWeight: 400, color: "#a1a1a1", marginTop: "6px" }}>
-            Large
-          </span>
-        </div>
-        <div className="flex flex-col items-center">
-          <PreviewBadge label="Default" style={defaultStyle} height={22} fontSize="12px" />
-          <span style={{ fontSize: "10px", fontWeight: 400, color: "#a1a1a1", marginTop: "6px" }}>
-            Default
-          </span>
-        </div>
-        <div className="flex flex-col items-center">
-          <PreviewBadge label="Small" style={defaultStyle} height={18} fontSize="10px" />
-          <span style={{ fontSize: "10px", fontWeight: 400, color: "#a1a1a1", marginTop: "6px" }}>
-            Small
-          </span>
-        </div>
-      </div>
+    <PreviewSection label="Variants (status colour)" wrapClassName="flex flex-col items-center gap-[8px] w-full">
+      {STATUS_VARIANTS.map((v) => (
+        <PreviewBadge key={v.label} v={v} />
+      ))}
     </PreviewSection>
   )
 }
@@ -102,7 +83,7 @@ function PreviewTab() {
   return (
     <div className="flex flex-col" style={{ gap: "28px" }}>
       <VariantsSection />
-      <SizesSection />
+      <StatusVariantsSection />
     </div>
   )
 }
@@ -116,7 +97,7 @@ function CodeTab() {
     <StandardCodeTab
       packageName="@hyena/badge"
       importCode={`import { Badge } from "@hyena/badge"`}
-      usageCode={`<Badge>Badge</Badge>`}
+      usageCode={`<Badge>Badge</Badge>\n\n<Badge variant="information">Info</Badge>\n<Badge variant="success">Active</Badge>\n<Badge variant="error">Failed</Badge>`}
     />
   )
 }
@@ -128,10 +109,9 @@ function CodeTab() {
 const BADGE_PROPS: PropDef[] = [
   {
     prop: "variant",
-    type: '"default" | "secondary" | "outline" | "destructive" | "success" | "warning" | "info"',
+    type: '"default" | "secondary" | "outline" | "information" | "success" | "warning" | "error" | "progress"',
     defaultVal: '"default"',
   },
-  { prop: "size", type: '"sm" | "md" | "lg"', defaultVal: '"md"' },
   { prop: "className", type: "string", defaultVal: "—" },
   { prop: "children", type: "React.ReactNode", defaultVal: "—" },
 ]
@@ -140,7 +120,7 @@ function ApiTab() {
   return (
     <StandardApiTab
       name="Badge"
-      description="A small status indicator with variant and size support."
+      description="A small status indicator with variant support."
       props={BADGE_PROPS}
     />
   )
@@ -152,8 +132,8 @@ function ApiTab() {
 
 const CAP_DATA: CAPData = {
   type: "Primitive",
-  variants: "7",
-  sizes: "3",
+  variants: "8",
+  sizes: "—",
   deps: "cva, cn",
   related: [
     { label: "Button", href: "/components/button" },
@@ -162,12 +142,12 @@ const CAP_DATA: CAPData = {
   ],
   tokens: [
     { name: "--primary", color: "#262626" },
-    { name: "--secondary", color: "#f0f0f0", border: true },
-    { name: "--destructive", color: "#d5143e" },
-    { name: "--success", color: "#00885e" },
-    { name: "--warning", color: "#b45309" },
-    { name: "--info", color: "#2563eb" },
-    { name: "--border", color: "#e4e4e7", border: true },
+    { name: "--secondary", color: "#F0F0F0", border: true },
+    { name: "--information", color: "#B392F0" },
+    { name: "--success", color: "#14B8A6" },
+    { name: "--warning", color: "#F97316" },
+    { name: "--error", color: "#D5143E" },
+    { name: "--progress", color: "#3B82F6" },
   ],
 }
 

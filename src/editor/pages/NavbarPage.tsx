@@ -18,7 +18,7 @@ import {
 
 function DefaultSection() {
   return (
-    <PreviewSection label="Default" height={120} wrapClassName="w-full h-full px-0">
+    <PreviewSection label="Default" wrapClassName="w-full" flush>
       <div
         className="flex items-center justify-between w-full h-full"
         style={{ padding: "0 24px" }}
@@ -69,7 +69,7 @@ function DefaultSection() {
 
 function MinimalSection() {
   return (
-    <PreviewSection label="Minimal" height={120} wrapClassName="w-full h-full px-0">
+    <PreviewSection label="Minimal" wrapClassName="w-full" flush>
       <div
         className="flex items-center justify-between w-full h-full"
         style={{ padding: "0 24px" }}

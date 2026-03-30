@@ -2,11 +2,12 @@
 
 import { useCallback } from "react"
 import { Minus, Plus } from "lucide-react"
-import { useTokens } from "@/tokens/provider"
+import { useTokenStore } from "@/store/token-store"
 import { generateSpacingScale } from "@/lib/math"
 
 export function SpacingEditor() {
-  const { spacing, setSpacing } = useTokens()
+  const spacing = useTokenStore((s) => s.spacing)
+  const setSpacing = useTokenStore((s) => s.setSpacing)
   const scale = generateSpacingScale(spacing.base)
 
   const increment = useCallback(() => {

@@ -1,6 +1,6 @@
 "use client"
 
-import { useTokens } from "@/tokens/provider"
+import { useTokenStore } from "@/store/token-store"
 import type { RadiusPreset } from "@/tokens/types"
 
 const PRESETS: Array<{ value: RadiusPreset; label: string; preview: number }> = [
@@ -10,7 +10,8 @@ const PRESETS: Array<{ value: RadiusPreset; label: string; preview: number }> = 
 ]
 
 export function RadiusEditor() {
-  const { radiusPreset, setRadiusPreset } = useTokens()
+  const radiusPreset = useTokenStore((s) => s.radiusPreset)
+  const setRadiusPreset = useTokenStore((s) => s.setRadiusPreset)
 
   return (
     <div className="grid grid-cols-3 gap-1">

@@ -62,12 +62,16 @@
   --chrome-accent: #262626;
   --chrome-accent-fg: #fafafa;
 
-  /* ── Semantic ── */
+  /* ── Semantic — unified palette ── */
   --chrome-destructive: #d5143e;
   --chrome-destructive-border: #bf2144;
   --chrome-destructive-soft: rgba(213, 20, 62, 0.05);
-  --chrome-info-bg: rgba(43, 127, 255, 0.08);
-  --chrome-info-text: #1447e6;
+  --chrome-information: #B392F0;
+  --chrome-success: #14B8A6;
+  --chrome-warning: #F97316;
+  --chrome-error: #D5143E;
+  --chrome-progress: #3B82F6;
+  --chrome-loading: #838383;
 
   /* ── Radii — DESIGN-SPEC Section 6 ── */
   --chrome-radius-pill: 8.75px;

@@ -6,12 +6,14 @@ export interface NavItem {
   label: string
   href: string
   badge?: string
+  locked?: boolean
 }
 
 export interface NavGroup {
   label: string
   items: NavItem[]
   defaultOpen?: boolean
+  groupBadge?: string
 }
 
 function slug(label: string): string {
@@ -31,17 +33,25 @@ const COMPONENT_LABELS = [
   "Button",
   "Calendar",
   "Card",
+  "Carousel",
+  "Chart",
   "Checkbox",
   "Checkbox Group",
   "Collapsible",
+  "Code Block",
+  "Color Picker",
   "Combobox",
   "Command",
+  "Context Menu",
+  "Copy Button",
+  "Data Table",
   "Date Picker",
   "Dialog",
   "Drawer",
   "Empty",
   "Field",
   "Fieldset",
+  "File Upload",
   "Form",
   "Frame",
   "Group",
@@ -52,23 +62,28 @@ const COMPONENT_LABELS = [
   "Label",
   "Menu",
   "Meter",
+  "Navigation Menu",
   "Number Field",
   "Pagination",
   "Popover",
   "Preview Card",
   "Progress",
   "Radio Group",
+  "Resizable",
   "Scroll Area",
   "Select",
   "Separator",
   "Sheet",
+  "Sidebar",
   "Skeleton",
   "Slider",
   "Spinner",
+  "Stepper",
   "Switch",
   "Table",
   "Tabs",
   "Textarea",
+  "Timeline",
   "Toast",
   "Toggle",
   "Toggle Group",
@@ -77,18 +92,10 @@ const COMPONENT_LABELS = [
 ] as const
 
 const BADGE_MAP: Record<string, string> = {
-  Alert: "New",
-  Badge: "New",
-  Card: "New",
-  Divider: "New",
-  Input: "New",
-  Modal: "New",
-  Navbar: "New",
-  Select: "New",
-  Skeleton: "New",
-  Table: "New",
-  Toggle: "New",
-  Tooltip: "New",
+  Chart: "New",
+  "Data Table": "New",
+  "File Upload": "New",
+  Sidebar: "New",
 }
 
 const COMPONENT_ITEMS: NavItem[] = COMPONENT_LABELS.map((label) => ({
@@ -100,11 +107,11 @@ const COMPONENT_ITEMS: NavItem[] = COMPONENT_LABELS.map((label) => ({
 // ── Tokens ─────────────────────────────────────────────────────────── //
 
 const TOKEN_ITEMS: NavItem[] = [
-  { label: "Colour", href: "/tokens/colour" },
-  { label: "Shapes", href: "/tokens/shapes" },
-  { label: "Spacing", href: "/tokens/spacing" },
-  { label: "Styles", href: "/tokens/styles" },
-  { label: "Typography", href: "/tokens/typography" },
+  { label: "Colour", href: "/tokens/colour", locked: true },
+  { label: "Shapes", href: "/tokens/shapes", locked: true },
+  { label: "Spacing", href: "/tokens/spacing", locked: true },
+  { label: "Styles", href: "/tokens/styles", locked: true },
+  { label: "Typography", href: "/tokens/typography", locked: true },
 ]
 
 // ── Rules ──────────────────────────────────────────────────────────── //
@@ -123,11 +130,18 @@ const ICON_ITEMS: NavItem[] = [
   { label: "Mobile", href: "/icons/mobile" },
 ]
 
+// ── Getting Started ───────────────────────────────────────────────── //
+
+const GETTING_STARTED_ITEMS: NavItem[] = [
+  { label: "Installation", href: "/docs/installation" },
+]
+
 // ── Assembled groups ───────────────────────────────────────────────── //
 
 export const NAV_GROUPS: NavGroup[] = [
+  { label: "Getting Started", items: GETTING_STARTED_ITEMS, defaultOpen: true },
   { label: "Components", items: COMPONENT_ITEMS, defaultOpen: true },
-  { label: "Tokens", items: TOKEN_ITEMS },
+  { label: "Tokens", items: TOKEN_ITEMS, groupBadge: "Soon" },
   { label: "Rules", items: RULES_ITEMS },
   { label: "Icons", items: ICON_ITEMS },
 ]
@@ -155,11 +169,30 @@ export const VALID_RULES_PAGES = new Set([
 
 export const VALID_ICON_PLATFORMS = new Set(["desktop", "mobile"])
 
+export const VALID_DOCS_PAGES = new Set(["installation"])
+
 // ── Functional component slugs (have real content) ─────────────────── //
 
 export const FUNCTIONAL_COMPONENT_SLUGS = new Set([
+  "accordion",
+  "avatar",
+  "breadcrumb",
   "button",
+  "checkbox",
+  "checkbox-group",
+  "collapsible",
+  "empty",
+  "field",
+  "fieldset",
+  "frame",
+  "group",
   "input",
+  "kbd",
+  "label",
+  "meter",
+  "number-field",
+  "pagination",
+  "progress",
   "badge",
   "toggle",
   "select",
@@ -171,4 +204,43 @@ export const FUNCTIONAL_COMPONENT_SLUGS = new Set([
   "navbar",
   "table",
   "skeleton",
+  "radio-group",
+  "scroll-area",
+  "separator",
+  "slider",
+  "spinner",
+  "switch",
+  "tabs",
+  "textarea",
+  "toggle-group",
+  "toolbar",
+  "dialog",
+  "alert-dialog",
+  "drawer",
+  "sheet",
+  "input-group",
+  "input-otp",
+  "autocomplete",
+  "combobox",
+  "popover",
+  "menu",
+  "toast",
+  "preview-card",
+  "calendar",
+  "date-picker",
+  "command",
+  "form",
+  "copy-button",
+  "code-block",
+  "context-menu",
+  "timeline",
+  "stepper",
+  "color-picker",
+  "carousel",
+  "navigation-menu",
+  "resizable",
+  "chart",
+  "data-table",
+  "file-upload",
+  "sidebar",
 ])

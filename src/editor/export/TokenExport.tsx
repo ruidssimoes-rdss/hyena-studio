@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { Check, Copy } from "lucide-react"
-import { useTokens } from "@/tokens/provider"
+import { useCssVars } from "@/store/token-store"
 import {
   generateTokensCss,
   generateTailwindConfig,
@@ -12,7 +12,7 @@ import {
 type ExportFormat = "css" | "tailwind" | "json"
 
 export function TokenExport() {
-  const { cssVars } = useTokens()
+  const cssVars = useCssVars()
   const [format, setFormat] = useState<ExportFormat>("css")
   const [copied, setCopied] = useState(false)
 

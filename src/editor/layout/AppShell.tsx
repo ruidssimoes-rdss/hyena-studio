@@ -1,6 +1,6 @@
 "use client"
 
-import { TokenProvider, useTokens } from "@/tokens/provider"
+import { useTokenStore } from "@/store/token-store"
 import { useRules } from "@/hooks/useRules"
 import { Sidebar } from "./Sidebar"
 import { Panel } from "./Panel"
@@ -61,7 +61,9 @@ function TopBar() {
 }
 
 function EditorLayout() {
-  const { styleObject, radiusPreset, density } = useTokens()
+  const styleObject = useTokenStore((s) => s.styleObject)
+  const radiusPreset = useTokenStore((s) => s.radiusPreset)
+  const density = useTokenStore((s) => s.density)
 
   return (
     <div className="hyena-chrome relative isolate flex min-h-dvh flex-col overflow-clip bg-[var(--chrome-sidebar)]">
@@ -107,9 +109,5 @@ function EditorLayout() {
 }
 
 export function AppShell() {
-  return (
-    <TokenProvider>
-      <EditorLayout />
-    </TokenProvider>
-  )
+  return <EditorLayout />
 }

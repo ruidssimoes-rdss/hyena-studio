@@ -67,7 +67,7 @@ function PreviewToggle({
 function DefaultSection() {
   return (
     <PreviewSection label="Default">
-      <div className="flex items-center justify-center" style={{ gap: "16px" }}>
+      <div className="flex flex-col items-center" style={{ gap: "10px" }}>
         <div className="flex flex-col items-center">
           <PreviewToggle />
           <span style={{ fontSize: "10px", fontWeight: 400, color: "#a1a1a1", marginTop: "6px" }}>
@@ -97,53 +97,10 @@ function DefaultSection() {
   )
 }
 
-function WithLabelsSection() {
-  const items: Array<{
-    label: string
-    description?: string
-    defaultChecked?: boolean
-  }> = [
-    { label: "Email notifications", description: "Receive emails about account activity.", defaultChecked: true },
-    { label: "Marketing emails", description: "Get updates about new features and offers." },
-    { label: "Dark mode", defaultChecked: true },
-  ]
-
-  return (
-    <PreviewSection
-      label="With Labels"
-      height={300}
-      wrapClassName="flex flex-col items-start justify-center gap-[16px] px-[35px] w-full"
-    >
-      <div className="flex flex-col" style={{ gap: "16px", width: "100%", maxWidth: "380px" }}>
-        {items.map((item) => (
-          <div
-            key={item.label}
-            className="flex items-start justify-between"
-            style={{ gap: "12px" }}
-          >
-            <div className="flex flex-col" style={{ gap: "2px" }}>
-              <span style={{ fontSize: "13px", fontWeight: 500, color: "#262626" }}>
-                {item.label}
-              </span>
-              {item.description && (
-                <span style={{ fontSize: "12.3px", fontWeight: 400, color: "#a1a1a1" }}>
-                  {item.description}
-                </span>
-              )}
-            </div>
-            <PreviewToggle defaultChecked={item.defaultChecked} />
-          </div>
-        ))}
-      </div>
-    </PreviewSection>
-  )
-}
-
 function PreviewTab() {
   return (
     <div className="flex flex-col" style={{ gap: "28px" }}>
       <DefaultSection />
-      <WithLabelsSection />
     </div>
   )
 }

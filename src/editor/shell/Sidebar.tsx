@@ -28,6 +28,28 @@ function SidebarItem({ item }: { item: NavItem }) {
   const pathname = usePathname()
   const active = pathname === item.href
 
+  if (item.locked) {
+    return (
+      <Link
+        href={item.href}
+        className="flex items-center"
+        style={{
+          height: "28px",
+          padding: "5px 12px",
+          borderRadius: "8.75px",
+          fontSize: "12.3px",
+          fontWeight: 400,
+          color: "#c8c8c8",
+          background: "transparent",
+          gap: "6px",
+          cursor: "default",
+        }}
+      >
+        <span className="truncate flex-1">{item.label}</span>
+      </Link>
+    )
+  }
+
   return (
     <Link
       href={item.href}
@@ -84,7 +106,24 @@ function SidebarGroup({ group }: { group: NavGroup }) {
           color: "#262626",
         }}
       >
-        <span>{group.label}</span>
+        <span className="flex items-center" style={{ gap: "6px" }}>
+          {group.label}
+          {group.groupBadge && (
+            <span
+              className="inline-flex items-center font-medium"
+              style={{
+                fontSize: "10.5px",
+                height: "16.4px",
+                padding: "0 3.5px",
+                borderRadius: "4.75px",
+                background: "rgba(0, 0, 0, 0.04)",
+                color: "#a1a1a1",
+              }}
+            >
+              {group.groupBadge}
+            </span>
+          )}
+        </span>
         <ChevronRight
           className="transition-transform duration-150"
           style={{

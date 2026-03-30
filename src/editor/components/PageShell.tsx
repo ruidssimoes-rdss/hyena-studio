@@ -35,26 +35,27 @@ export function LabelPill({ text }: { text: string }) {
 export function PreviewSection({
   label,
   children,
-  height = 250,
-  wrapClassName = "flex flex-wrap items-center justify-center gap-[6px] px-[35px] w-full",
+  wrapClassName = "flex flex-col items-center gap-[10px] w-full",
+  flush = false,
 }: {
   label: string
   children: ReactNode
-  height?: number
   wrapClassName?: string
+  flush?: boolean
 }) {
   return (
     <div>
       <LabelPill text={label} />
       <div
-        className="flex items-center justify-center"
+        className="flex flex-col justify-center"
         style={{
-          height: `${height}px`,
           marginTop: "7px",
           border: "1px solid #f0f0f0",
           borderRadius: "10px",
           background: "white",
-          padding: "1px",
+          padding: flush ? "24px 0" : "24px 35px",
+          minHeight: "250px",
+          overflow: "visible",
         }}
       >
         <div className={wrapClassName}>{children}</div>
@@ -67,22 +68,21 @@ export function PreviewSection({
 
 export function PreviewBox({
   children,
-  height = 250,
   className = "flex items-center justify-center",
 }: {
   children: ReactNode
-  height?: number
   className?: string
 }) {
   return (
     <div
       className={className}
       style={{
-        height: `${height}px`,
         border: "1px solid #f0f0f0",
         borderRadius: "10px",
         background: "white",
         padding: "24px 35px",
+        minHeight: "250px",
+        overflow: "visible",
       }}
     >
       {children}

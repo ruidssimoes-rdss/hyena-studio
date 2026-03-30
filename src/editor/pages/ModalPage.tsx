@@ -18,12 +18,13 @@ import {
 
 function DefaultSection() {
   return (
-    <PreviewSection label="Default" height={350} wrapClassName="w-full h-full">
+    <PreviewSection label="Default" wrapClassName="w-full">
       <div
-        className="flex items-center justify-center w-full h-full"
+        className="flex items-center justify-center w-full"
         style={{
           background: "rgba(0,0,0,0.4)",
           borderRadius: "9px",
+          padding: "32px 24px",
         }}
       >
         <div
@@ -79,12 +80,13 @@ function DefaultSection() {
 
 function MinimalSection() {
   return (
-    <PreviewSection label="Minimal" height={250} wrapClassName="w-full h-full">
+    <PreviewSection label="Minimal" wrapClassName="w-full">
       <div
-        className="flex items-center justify-center w-full h-full"
+        className="flex items-center justify-center w-full"
         style={{
           background: "rgba(0,0,0,0.4)",
           borderRadius: "9px",
+          padding: "32px 24px",
         }}
       >
         <div

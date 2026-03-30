@@ -46,7 +46,7 @@ function DefaultSection() {
   ]
 
   return (
-    <PreviewSection label="Default" height={340}>
+    <PreviewSection label="Default">
       <div style={{ ...cardBase, maxWidth: "380px", width: "100%" }}>
         {/* Header */}
         <div style={{ padding: "16px 16px 0" }}>
@@ -93,7 +93,7 @@ function DefaultSection() {
 
 function WithImageSection() {
   return (
-    <PreviewSection label="With Image" height={360}>
+    <PreviewSection label="With Image">
       <div style={{ ...cardBase, maxWidth: "380px", width: "100%" }}>
         {/* Image placeholder */}
         <div
@@ -130,7 +130,7 @@ function WithImageSection() {
 
 function MinimalSection() {
   return (
-    <PreviewSection label="Minimal" height={200}>
+    <PreviewSection label="Minimal">
       <div style={{ ...cardBase, maxWidth: "380px", width: "100%", padding: "16px" }}>
         <p style={{ fontSize: "12.3px", fontWeight: 400, color: "#727272", lineHeight: 1.6 }}>
           This is a minimal card with just body content. No header or footer — useful for

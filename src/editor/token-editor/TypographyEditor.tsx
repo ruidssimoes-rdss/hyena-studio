@@ -1,6 +1,6 @@
 "use client"
 
-import { useTokens } from "@/tokens/provider"
+import { useTokenStore } from "@/store/token-store"
 import type { TypeScaleLevel } from "@/tokens/types"
 
 const SCALE_LEVELS: TypeScaleLevel[] = [
@@ -17,7 +17,7 @@ const SCALE_LEVELS: TypeScaleLevel[] = [
 ]
 
 export function TypographyEditor() {
-  const { tokens } = useTokens()
+  const tokens = useTokenStore((s) => s.tokens)
 
   return (
     <div className="space-y-3">

@@ -4,7 +4,6 @@ import {
   ComponentPageLayout,
   ComponentCAP,
   PreviewSection,
-  PreviewBox,
   StandardCodeTab,
   StandardApiTab,
   type CAPData,
@@ -17,16 +16,14 @@ import {
 
 function HorizontalSection() {
   return (
-    <PreviewSection label="Horizontal">
-      <PreviewBox className="flex flex-col items-center justify-center w-full" height={250}>
-        <span style={{ fontSize: "12.3px", color: "#262626", marginBottom: "12px" }}>
-          Section A
-        </span>
-        <div style={{ width: "100%", height: "1px", background: "#f0f0f0" }} />
-        <span style={{ fontSize: "12.3px", color: "#262626", marginTop: "12px" }}>
-          Section B
-        </span>
-      </PreviewBox>
+    <PreviewSection label="Horizontal" wrapClassName="flex flex-col items-stretch gap-[10px] w-full">
+      <span style={{ fontSize: "12.3px", color: "#262626", textAlign: "center" }}>
+        Section A
+      </span>
+      <div style={{ width: "100%", height: "1px", background: "#f0f0f0" }} />
+      <span style={{ fontSize: "12.3px", color: "#262626", textAlign: "center" }}>
+        Section B
+      </span>
     </PreviewSection>
   )
 }
@@ -45,7 +42,7 @@ function VerticalSection() {
 
 function WithLabelSection() {
   return (
-    <PreviewSection label="With Label">
+    <PreviewSection label="With Label" wrapClassName="flex flex-col items-stretch gap-[10px] w-full">
       <div style={{ width: "100%", position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <div style={{ width: "100%", height: "1px", background: "#f0f0f0" }} />
         <span

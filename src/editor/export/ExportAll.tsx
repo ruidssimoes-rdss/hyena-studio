@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react"
 import { Download, Check, Loader2 } from "lucide-react"
-import { useTokens } from "@/tokens/provider"
+import { useCssVars } from "@/store/token-store"
 import {
   getAllComponentSources,
   generateTokensCss,
@@ -13,7 +13,7 @@ import {
 } from "@/lib/export"
 
 export function ExportAll() {
-  const { cssVars } = useTokens()
+  const cssVars = useCssVars()
   const [state, setState] = useState<"idle" | "generating" | "done">("idle")
 
   const handleExport = useCallback(async () => {

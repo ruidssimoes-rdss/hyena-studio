@@ -151,7 +151,7 @@ export function CodeBlock({ filename, code, highlight = true }: CodeBlockProps) 
             padding: "0 8px",
             borderRadius: "4px",
             fontSize: "11px",
-            color: copied ? "#00bb7f" : "#a1a1a1",
+            color: copied ? "#14B8A6" : "#a1a1a1",
             background: "transparent",
             border: "none",
             cursor: "pointer",

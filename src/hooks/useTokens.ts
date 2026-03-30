@@ -1,1 +1,1 @@
-export { useTokens } from "@/tokens/provider"
+export { useTokenStore as useTokens } from "@/store/token-store"

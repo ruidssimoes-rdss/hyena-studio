@@ -1,6 +1,6 @@
 "use client"
 
-import { useTokens } from "@/tokens/provider"
+import { useTokenStore } from "@/store/token-store"
 import type { DensityLevel } from "@/tokens/types"
 
 const DENSITIES: Array<{
@@ -14,7 +14,8 @@ const DENSITIES: Array<{
 ]
 
 export function DensityEditor() {
-  const { density, setDensity } = useTokens()
+  const density = useTokenStore((s) => s.density)
+  const setDensity = useTokenStore((s) => s.setDensity)
 
   return (
     <div className="grid grid-cols-3 gap-1">

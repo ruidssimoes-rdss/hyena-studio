@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useRef } from "react"
-import { useTokens } from "@/tokens/provider"
+import { useTokenStore } from "@/store/token-store"
 import type { UserColorInputs } from "@/tokens/types"
 
 const QUICK_PRESETS: Array<{ label: string; value: string }> = [
@@ -69,7 +69,8 @@ function ColorRow({
 }
 
 export function ColorEditor() {
-  const { userColors, setColors } = useTokens()
+  const userColors = useTokenStore((s) => s.userColors)
+  const setColors = useTokenStore((s) => s.setColors)
 
   const updateColor = useCallback(
     (key: keyof UserColorInputs, value: string) => {

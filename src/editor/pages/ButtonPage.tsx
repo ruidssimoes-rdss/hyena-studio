@@ -8,6 +8,7 @@ import {
 import { useSetCAP } from "@/editor/shell/CAPContext"
 import { ButtonCAP } from "@/editor/shell/ButtonCAP"
 import { CodeBlock } from "@/editor/components/CodeBlock"
+import { PreviewSection } from "@/editor/components/PageShell"
 
 // ================================================================== //
 // DESIGN TOKENS — exact Figma values from DESIGN-SPEC                //
@@ -83,48 +84,6 @@ function PreviewButton({
       {icon}
       {label}
     </button>
-  )
-}
-
-function PreviewSection({
-  label, children, height = 250,
-}: {
-  label: string
-  children: React.ReactNode
-  height?: number
-}) {
-  return (
-    <div>
-      <div
-        className="inline-flex items-center font-medium"
-        style={{
-          height: "28px",
-          padding: "0 10.8px",
-          borderRadius: "10px",
-          border: "0.8px solid #f0f0f0",
-          background: "white",
-          fontSize: "12.3px",
-          color: "#36393d",
-        }}
-      >
-        {label}
-      </div>
-      <div
-        className="flex items-center justify-center"
-        style={{
-          height: `${height}px`,
-          marginTop: "7px",
-          border: "1px solid #f0f0f0",
-          borderRadius: "10px",
-          background: "white",
-          padding: "1px",
-        }}
-      >
-        <div className="flex flex-wrap items-center justify-center gap-[6px] px-[35px] w-full">
-          {children}
-        </div>
-      </div>
-    </div>
   )
 }
 
@@ -286,14 +245,14 @@ function IconOnlySection() {
       <div
         className="flex items-center justify-center"
         style={{
-          height: "250px",
           marginTop: "7px",
           border: "1px solid #f0f0f0",
           borderRadius: "10px",
           background: "white",
+          padding: "24px 0",
         }}
       >
-        <div className="flex items-center justify-center" style={{ gap: "6px" }}>
+        <div className="flex flex-col items-center" style={{ gap: "10px" }}>
           {icons.map((item, i) => (
             <button
               key={i}
@@ -344,14 +303,14 @@ function StatesSection() {
       <div
         className="flex items-center justify-center"
         style={{
-          height: "250px",
           marginTop: "7px",
           border: "1px solid #f0f0f0",
           borderRadius: "10px",
           background: "white",
+          padding: "24px 0",
         }}
       >
-        <div className="flex items-center justify-center" style={{ gap: "16px" }}>
+        <div className="flex flex-col items-center" style={{ gap: "10px" }}>
           {states.map((state) => (
             <div key={state.label} className="flex flex-col items-center">
               <button
@@ -557,7 +516,7 @@ function SuccessButton() {
     setTimeout(() => setPhase("idle"), 3000)
   }, [phase])
 
-  const bg = phase === "success" ? "#00bb7f" : "#262626"
+  const bg = phase === "success" ? "#14B8A6" : "#262626"
 
   return (
     <InteractionCell label="Success" desc="loading → complete">
@@ -668,7 +627,7 @@ function ProgressButton() {
   }, [])
 
   const label = state === "done" ? "Done ✓" : state === "progress" ? `${pct}%` : "Upload"
-  const textColor = state === "done" ? "#00bb7f" : "#171717"
+  const textColor = state === "done" ? "#14B8A6" : "#171717"
 
   return (
     <InteractionCell label="Progress" desc="click to upload">
@@ -709,11 +668,11 @@ function InteractionsSection() {
       <div
         className="flex items-center justify-center"
         style={{
-          height: "400px",
           marginTop: "7px",
           border: "1px solid #f0f0f0",
           borderRadius: "10px",
           background: "white",
+          padding: "24px 0",
         }}
       >
         <div

@@ -28,7 +28,7 @@ const inputStyle: React.CSSProperties = {
 
 function VariantsSection() {
   return (
-    <PreviewSection label="Variants">
+    <PreviewSection label="Variants" wrapClassName="flex flex-col items-center gap-[12px] w-full">
       <input
         type="text"
         placeholder="Email address"
@@ -51,7 +51,7 @@ function VariantsSection() {
 
 function SizesSection() {
   return (
-    <PreviewSection label="Sizes">
+    <PreviewSection label="Sizes" wrapClassName="flex flex-col items-center gap-[12px] w-full">
       <input
         type="text"
         placeholder="Small (200px)"
@@ -84,43 +84,35 @@ function StatesSection() {
   ]
 
   return (
-    <PreviewSection label="States" wrapClassName="flex items-center justify-center w-full px-[35px]">
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "20px 24px",
-        }}
-      >
-        {states.map((state) => (
-          <div key={state.label} className="flex flex-col items-center">
-            <input
-              type="text"
-              placeholder="Placeholder"
-              disabled={state.disabled}
-              style={{ ...inputStyle, width: "100%", ...state.style }}
-            />
-            <span
-              style={{
-                fontSize: "10px",
-                fontWeight: 400,
-                color: "#a1a1a1",
-                marginTop: "6px",
-                textAlign: "center",
-              }}
-            >
-              {state.label}
-            </span>
-          </div>
-        ))}
-      </div>
+    <PreviewSection label="States" wrapClassName="flex flex-col items-center gap-[12px] w-full">
+      {states.map((state) => (
+        <div key={state.label} className="flex flex-col items-center">
+          <input
+            type="text"
+            placeholder="Placeholder"
+            disabled={state.disabled}
+            style={{ ...inputStyle, width: "200px", ...state.style }}
+          />
+          <span
+            style={{
+              fontSize: "10px",
+              fontWeight: 400,
+              color: "#a1a1a1",
+              marginTop: "6px",
+              textAlign: "center",
+            }}
+          >
+            {state.label}
+          </span>
+        </div>
+      ))}
     </PreviewSection>
   )
 }
 
 function WithLabelSection() {
   return (
-    <PreviewSection label="With Label" height={300} wrapClassName="flex flex-col items-start justify-center gap-[20px] px-[35px] w-full">
+    <PreviewSection label="With Label" wrapClassName="flex flex-col items-start gap-[20px] w-full">
       <div className="flex flex-col" style={{ gap: "4px", width: "300px" }}>
         <label
           style={{ fontSize: "12.3px", fontWeight: 500, color: "#262626" }}

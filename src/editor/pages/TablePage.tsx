@@ -39,9 +39,9 @@ function StatusBadge() {
         padding: "0 4px",
         borderRadius: "10px",
         fontSize: "10px",
-        background: "rgba(0,187,127,0.08)",
-        border: "0.8px solid rgba(0,187,127,0.2)",
-        color: "#007956",
+        background: "rgba(20,184,166,0.02)",
+        border: "0.8px solid #14B8A6",
+        color: "#14B8A6",
         lineHeight: 1,
       }}
     >
@@ -108,20 +108,16 @@ function DataTable({ striped = false }: { striped?: boolean }) {
 
 function DefaultSection() {
   return (
-    <PreviewSection label="Default" height={280} wrapClassName="w-full h-full items-start px-0">
-      <div className="w-full" style={{ padding: "0 24px" }}>
-        <DataTable />
-      </div>
+    <PreviewSection label="Default" wrapClassName="flex flex-col items-stretch w-full" flush>
+      <DataTable />
     </PreviewSection>
   )
 }
 
 function StripedSection() {
   return (
-    <PreviewSection label="Striped" height={280} wrapClassName="w-full h-full items-start px-0">
-      <div className="w-full" style={{ padding: "0 24px" }}>
-        <DataTable striped />
-      </div>
+    <PreviewSection label="Striped" wrapClassName="flex flex-col items-stretch w-full" flush>
+      <DataTable striped />
     </PreviewSection>
   )
 }

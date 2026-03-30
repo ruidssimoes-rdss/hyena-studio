@@ -21,24 +21,26 @@ const skeletonStyle: React.CSSProperties = {
 
 function ShapesSection() {
   return (
-    <PreviewSection label="Shapes">
-      <div className="flex items-center" style={{ gap: "20px" }}>
-        {/* Rectangle */}
-        <div style={{ ...skeletonStyle, width: "200px", height: "12px", borderRadius: "6px" }} />
-        {/* Square */}
+    <PreviewSection label="Shapes" wrapClassName="flex flex-col items-stretch gap-[10px] w-full">
+      {/* Rectangle */}
+      <div style={{ ...skeletonStyle, width: "100%", height: "12px", borderRadius: "6px" }} />
+      {/* Square */}
+      <div className="flex justify-center">
         <div style={{ ...skeletonStyle, width: "40px", height: "40px", borderRadius: "8px" }} />
-        {/* Circle */}
-        <div style={{ ...skeletonStyle, width: "40px", height: "40px", borderRadius: "50%" }} />
-        {/* Long rectangle */}
-        <div style={{ ...skeletonStyle, width: "300px", height: "12px", borderRadius: "6px" }} />
       </div>
+      {/* Circle */}
+      <div className="flex justify-center">
+        <div style={{ ...skeletonStyle, width: "40px", height: "40px", borderRadius: "50%" }} />
+      </div>
+      {/* Long rectangle */}
+      <div style={{ ...skeletonStyle, width: "100%", height: "12px", borderRadius: "6px" }} />
     </PreviewSection>
   )
 }
 
 function CardLoadingSection() {
   return (
-    <PreviewSection label="Card Loading" height={300}>
+    <PreviewSection label="Card Loading" wrapClassName="flex flex-col items-stretch gap-[10px] w-full">
       <div
         style={{
           width: "100%",

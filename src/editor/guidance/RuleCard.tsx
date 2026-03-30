@@ -1,7 +1,7 @@
 "use client"
 
 import type { RuleResult } from "@/rules/types"
-import { useTokens } from "@/tokens/provider"
+import { useTokenStore } from "@/store/token-store"
 
 const SEVERITY_COLORS = {
   error: "var(--chrome-error)",
@@ -15,7 +15,9 @@ interface RuleCardProps {
 
 export function RuleCard({ result }: RuleCardProps) {
   const { rule } = result
-  const { tokens, setColors, setSpacing } = useTokens()
+  const tokens = useTokenStore((s) => s.tokens)
+  const setColors = useTokenStore((s) => s.setColors)
+  const setSpacing = useTokenStore((s) => s.setSpacing)
   const barColor = SEVERITY_COLORS[rule.severity]
 
   const handleFix = () => {

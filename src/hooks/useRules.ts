@@ -1,12 +1,9 @@
 "use client"
 
-import { useMemo } from "react"
-import { evaluate } from "@/rules/engine"
+import { useRuleReport } from "@/store/token-store"
 import type { RuleReport } from "@/rules/types"
-import { useTokens } from "@/tokens/provider"
 
-/** Run the rules engine against current tokens and return the report. */
+/** Rule report from the Zustand token store — auto-updates on token changes. */
 export function useRules(): RuleReport {
-  const { tokens } = useTokens()
-  return useMemo(() => evaluate(tokens), [tokens])
+  return useRuleReport()
 }
