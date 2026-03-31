@@ -1,0 +1,82 @@
+{
+  "components": [
+    {
+      "name": "button",
+      "description": "Primary interactive element with multiple variants and sizes.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "input",
+      "description": "Text input field with label, validation, and icon support.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "badge",
+      "description": "Small status indicator with semantic color variants.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "toggle",
+      "description": "Boolean on/off switch with label support.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "select",
+      "description": "Dropdown selection with search, keyboard navigation, and custom options.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "tooltip",
+      "description": "Contextual hint displayed on hover or focus.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "divider",
+      "description": "Visual separator for content sections.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "card",
+      "description": "Container with variants for elevated, outlined, and filled styles.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "alert",
+      "description": "Contextual feedback messages with semantic types and dismiss support.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "modal",
+      "description": "Overlay dialog with focus trapping, keyboard dismiss, and scroll lock.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "navbar",
+      "description": "Application navigation bar with solid and glass variants.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "table",
+      "description": "Data table with sorting, selection, and density-aware sizing.",
+      "dependencies": [],
+      "internalDependencies": []
+    },
+    {
+      "name": "skeleton",
+      "description": "Loading placeholder matching content shape with pulse animation.",
+      "dependencies": [],
+      "internalDependencies": []
+    }
+  ]
+}

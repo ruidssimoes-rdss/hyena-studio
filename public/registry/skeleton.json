@@ -1,0 +1,15 @@
+{
+  "name": "skeleton",
+  "type": "component",
+  "description": "Loading placeholder matching content shape with pulse animation.",
+  "dependencies": [],
+  "peerDependencies": [],
+  "devDependencies": [],
+  "internalDependencies": [],
+  "files": [
+    {
+      "path": "skeleton.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport interface SkeletonProps {\n  variant?: \"text\" | \"circular\" | \"rectangular\"\n  width?: string | number\n  height?: string | number\n  className?: string\n}\n\nexport function Skeleton({\n  variant = \"text\",\n  width,\n  height,\n  className,\n}: SkeletonProps) {\n  const defaultDimensions = {\n    text: { width: \"100%\", height: 14 },\n    circular: { width: 40, height: 40 },\n    rectangular: { width: \"100%\", height: 120 },\n  }\n\n  const defaults = defaultDimensions[variant]\n  const w = width ?? defaults.width\n  const h = height ?? defaults.height\n\n  return (\n    <div\n      className={cn(\n        \"bg-[var(--color-surface-container-high)]\",\n        \"animate-[skeleton-pulse_1.5s_ease-in-out_infinite]\",\n        variant === \"text\" && \"rounded-[var(--radius-xs)]\",\n        variant === \"circular\" && \"rounded-full\",\n        variant === \"rectangular\" && \"rounded-[var(--radius-md)]\",\n        className\n      )}\n      style={{\n        width: typeof w === \"number\" ? `${w}px` : w,\n        height: typeof h === \"number\" ? `${h}px` : h,\n      }}\n    />\n  )\n}\n"
+    }
+  ]
+}

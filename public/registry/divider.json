@@ -1,0 +1,15 @@
+{
+  "name": "divider",
+  "type": "component",
+  "description": "Visual separator for content sections.",
+  "dependencies": [],
+  "peerDependencies": [],
+  "devDependencies": [],
+  "internalDependencies": [],
+  "files": [
+    {
+      "path": "divider.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport interface DividerProps {\n  variant?: \"full\" | \"inset\" | \"middle\"\n  direction?: \"horizontal\" | \"vertical\"\n  className?: string\n}\n\nexport function Divider({\n  variant = \"full\",\n  direction = \"horizontal\",\n  className,\n}: DividerProps) {\n  const isHorizontal = direction === \"horizontal\"\n\n  return (\n    <div\n      role=\"separator\"\n      aria-orientation={direction}\n      className={cn(\n        \"shrink-0 bg-[var(--color-outline-variant)]\",\n        isHorizontal ? \"h-px w-full\" : \"w-px self-stretch\",\n        variant === \"inset\" && isHorizontal && \"ml-[var(--spacing-3)]\",\n        variant === \"inset\" && !isHorizontal && \"mt-[var(--spacing-3)]\",\n        variant === \"middle\" && isHorizontal && \"mx-[var(--spacing-3)]\",\n        variant === \"middle\" && !isHorizontal && \"my-[var(--spacing-3)]\",\n        className\n      )}\n    />\n  )\n}\n"
+    }
+  ]
+}
